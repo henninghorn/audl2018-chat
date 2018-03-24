@@ -13,6 +13,32 @@ app.use(express.static('public'))
 
 app.use(express.json())
 
+//
+
+const messages = []
+
+//
+
+app.get('/api/messages', (req, res) => {
+
+  res.json(messages)
+
+})
+
+app.post('/api/messages', (req, res) => {
+
+  let message = {
+    text: req.body.text
+  }
+  
+  messages.push(message)
+  
+  res.json({
+    message: 'Saved.'
+  })
+  
+})
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log(`Your app is listening on port ${listener.address().port}`)

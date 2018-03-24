@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Testing</title>
+  </head>
+  <body>
+    <script>
+      fetch('/api/messages')
+      .then(response => response.json())
+      .then(json => console.log('messages', json))
+      
+      let options = {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          text: 'Hello #' + Math.ceil(Math.random() * 9999)
+        })
+      }
+      
+      fetch('/api/messages', options)
+      .then(response => response.json())
+      .then(json => console.log('post', json))
+      
+    </script>
+  </body>
+</html>
